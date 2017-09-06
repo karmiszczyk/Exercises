@@ -1,0 +1,140 @@
+
+*{
+  box-sizing: border-box;
+}
+
+article{
+  display: flex;
+
+  section{
+    height: 200px;
+    background: #a7a7a7;
+    margin: 0 10px;
+
+    &.small{
+      width: 100px;
+    }
+
+    &.big{
+      flex-grow: 2;
+    }
+  }
+}
+
+
+/**
+ * Zadanie 1
+ */
+.list{
+  justify-content: center;
+  display: flex;
+  padding: 0;
+  list-style: none;
+
+  li{
+    padding: 0 10px;
+  }
+}
+
+
+/**
+ * Zadanie 2
+ */
+.circles{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+
+  div{
+    background: #ffc757;
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+}
+
+
+/**
+ * Zadanie 3
+ */
+.crazy-layout{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  // Max 420px;
+  @media (max-width: 420px){
+    flex-direction: row-reverse;
+  }
+
+  div{
+    height: 50px;
+    flex-grow: 1;
+    border: 5px solid white;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background: #3987e6;
+
+
+    // Max 420px MOBILE
+    @media (max-width: 420px){
+      width: 100%;
+
+      // 4, 5, 6, 7
+      @for $i from 4 through 7{
+        &:nth-child( #{$i} ){
+          width: 50%;
+        }
+      }
+
+      // 9
+      &:nth-child(9){
+        order: 1;
+      }
+    }
+    // END MOBILE
+
+
+
+    // Min 420px DESKTOP
+    @media (min-width: 420px ){
+      // 1, 10
+      &:first-child, &:last-child{
+        width: 100%;
+      }
+
+      // 2, 3
+      @for $i from 2 through 3{
+        &:nth-child( #{$i} ){
+          width: 50%;
+        }
+      }
+
+      // 4, 5, 6, 7
+      @for $i from 4 through 7{
+        &:nth-child( #{$i} ){
+          width: 25%;
+        }
+      }
+
+      // 8
+      &:nth-child(8){
+        width: 65%;
+      }
+
+      // 9
+      &:nth-child(9){
+        width: 35%;
+      }
+    }
+    // END DESKTOP
+
+  }
+}

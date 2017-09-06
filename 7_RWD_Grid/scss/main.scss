@@ -1,0 +1,94 @@
+
+*{
+  box-sizing: border-box;
+}
+
+
+$columns: 12;
+$base-width: 100%/$columns;
+
+
+.container{
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+
+  .row{
+    margin-right: -15px;
+    margin-left: -15px;
+    position: relative;
+
+    // Clearfix dla rzędów
+    &:before, &:after{
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    // Właściwości dla wszystkich kolumn
+    [class*="col-"]{
+      min-height: 1px;
+      float: left;
+      padding: 15px;
+      word-wrap: break-word;
+    }
+
+    // Tworzenie kolumn
+    @for $i from 1 through $columns{
+      .col-#{$i}{
+        width: $base-width * $i;
+      }
+    }
+
+    // RWD
+    @media (max-width: 500px){
+      [class*="col-"]{
+        float: none;
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+
+header{
+  .col-12{
+    background: purple;
+  }
+}
+
+section{
+  .sidebar-left{
+    [class*=col-]{
+      margin: 5px 0;
+      background: blue;
+    }
+  }
+
+  .sidebar-right, .main{
+    margin-top: 20px;
+    height: 300px;
+  }
+
+  .sidebar-right{
+    background: blue;
+  }
+
+  .main{
+    background: yellow;
+  }
+}
+
+
+footer{
+  margin-top: 20px;
+
+  .col-12{
+    background: darkblue;
+  }
+}
+
+.clear{
+    clear: both;
+}
